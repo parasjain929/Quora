@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load cloudinary %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col col-sm-8">
+        <h1>Images</h1>
+    </div>
+    <div class="col col-sm-4">
+        <br>
+        <a href="{% url 'images:new' %}" class="btn btn-success">Upload image</a>
+    </div>
+</div>
+
+    {% if images %}
+        <ul>
+            {% for image in images %}
+                <li><a href="{% url 'images:show' image.id %}">{{image.id}}
+                {% cloudinary image.image width=100 %} 
+                </a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No images are available. </p>
+    {% endif %}
+
+    <a href="{% url 'images:new' %}">Create image</a>
+
+{% endblock %}
