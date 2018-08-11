@@ -1,0 +1,56 @@
+{% load filters %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="vote-links">
+            <span class="badge">
+                {{ answer.votes }}
+            </span>
+            <a href="{% url 'questions:vote_up_answer' answer.id %}">
+                <button type="button" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-chevron-up">
+                    </span>
+                </button>
+            </a>
+            <a href="{% url 'questions:vote_down_answer' answer.id %}">
+                <button type="button" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-chevron-down">
+                    </span>
+                </button>
+            </a>
+        </span>
+
+        ::
+
+        <em>Answered by </em><strong>{{ answer.user.username }}</strong>
+
+        <em>on</em>
+
+        {{ answer.date }}
+
+        {% if user == answer.user %}
+            <span class="edit-link pull-right">
+                <a href="{% url 'questions:edit_answer' answer.id %}">
+                    Edit answer</a>
+            </span>
+        {% endif %}
+    </div>
+    <div class="panel-body">
+        <p>
+            {% autoescape off %}
+            {{ answer|replace_urls }}
+            {% endautoescape %}
+        </p>
+
+        {% if answer.date_updated %}
+        <p>
+            <hr>
+            <span class="pull-right">
+                <em>Edited: {{ answer.date_updated }}</em>
+            </span>
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+
