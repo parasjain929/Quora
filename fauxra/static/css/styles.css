@@ -1,0 +1,15 @@
+body {
+  padding-top: 80px;
+}
+
+.question-well{
+    margin-bottom: 0;
+}
+
+.vote-links a {
+    text-decoration: none;
+}
+
+.panel p:last-child{
+    margin-bottom:0;
+}
